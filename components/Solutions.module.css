@@ -1,0 +1,150 @@
+.solutionsSection {
+  background-color: #ffffff;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.topTitle, .bottomTitle {
+  font-family: 'AvantGardePro', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 500; /* Regular weight for non-bold words */
+  color: #545454;
+}
+
+.topTitle strong, .bottomTitle strong {
+  font-weight: bold; /* Bold words */
+}
+
+.topTitle {
+  margin-bottom: 50px;
+}
+
+.bottomTitle {
+  margin-top: 50px;
+}
+
+.carouselContainer {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.navBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 20;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px;
+  transition: opacity 0.3s ease;
+}
+
+.navBtn:hover {
+  opacity: 0.7;
+}
+
+.prevBtn {
+  left: -70px;
+}
+
+.nextBtn {
+  right: -70px;
+}
+
+.carouselTrack {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 20px 80px; /* space for arrows */
+  -webkit-overflow-scrolling: touch;
+  
+  /* Hide scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carouselTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  flex: 0 0 320px; /* Fixed width for each card */
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Make it a square */
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.photo {
+  object-fit: cover;
+}
+
+.titleBand {
+  background-color: var(--color-primary); /* The blue color #497593 */
+  color: #ffffff;
+  font-family: 'AvantGardePro', sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+  padding: 12px 10px;
+  text-align: center;
+  margin-top: 5px; /* Tiny gap between photo and band, matching the image */
+}
+
+.blurOverlayLeft, .blurOverlayRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  pointer-events: none;
+  z-index: 15;
+  backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.blurOverlayLeft {
+  left: 0;
+  mask-image: linear-gradient(to right, black 50%, transparent);
+  -webkit-mask-image: linear-gradient(to right, black 50%, transparent);
+}
+
+.blurOverlayRight {
+  right: 0;
+  mask-image: linear-gradient(to left, black 50%, transparent);
+  -webkit-mask-image: linear-gradient(to left, black 50%, transparent);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .card {
+    flex: 0 0 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    flex: 0 0 240px;
+  }
+  .carouselTrack {
+    padding: 20px 60px;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+  .topTitle, .bottomTitle {
+    font-size: 1.8rem;
+    padding: 0 20px;
+  }
+}

@@ -1,0 +1,194 @@
+.footerSection {
+  padding-top: 60px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  text-align: center;
+  font-family: 'AvantGardePro', sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #545454;
+  margin-bottom: 30px;
+}
+
+.mainBlockContainer {
+  display: flex;
+  width: 100%;
+  height: 350px;
+  align-items: center;
+  position: relative;
+}
+
+.leftBlueBlock {
+  flex: 0 0 65%;
+  height: 100%;
+  background-color: var(--color-primary); /* #497593 */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contactColumns {
+  display: flex;
+  gap: 80px;
+  color: #ffffff;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.iconWrapper {
+  margin-bottom: 20px;
+}
+
+.column p {
+  font-family: 'AvantGardePro', sans-serif;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  letter-spacing: 0.5px;
+}
+
+.floatingIcon {
+  position: absolute;
+  right: -55px; /* Half of circle width to overlap edge */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.placeholderCircle {
+  width: 110px;
+  height: 110px;
+  background-color: #f2f2f2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border: 4px solid #ffffff;
+}
+
+.logoArea {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoPlaceholder {
+  font-family: 'AvantGardePro', sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoRedMark {
+  color: #c92a2a;
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.rightBlueBlock {
+  flex: 0 0 8%;
+  height: 100%;
+  background-color: var(--color-primary);
+}
+
+.bottomFooter {
+  padding: 30px 0;
+  margin-top: 30px;
+}
+
+.bottomContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footerTextRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-primary);
+  font-size: 1.1rem; /* Increased font size */
+  font-family: 'AvantGardePro', sans-serif;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 15px;
+}
+
+.socialCircle {
+  width: 32px;
+  height: 32px;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.socialCircle:hover {
+  opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .contactColumns {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainBlockContainer {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .leftBlueBlock {
+    flex: none;
+    width: 100%;
+    padding: 60px 20px;
+  }
+  
+  .contactColumns {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .floatingIcon {
+    right: 50%;
+    top: auto;
+    bottom: -55px; /* Overlap at bottom instead of right */
+    transform: translateX(50%);
+  }
+  
+  .logoArea {
+    flex: none;
+    width: 100%;
+    padding: 100px 20px 60px 20px;
+  }
+  
+  .rightBlueBlock {
+    display: none;
+  }
+  
+  .footerTextRow {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+}

@@ -1,0 +1,81 @@
+.locationSection {
+  padding: 60px 0 0 0;
+  background-color: #ffffff;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  padding: 0 20px;
+}
+
+.textContainer {
+  flex: 1;
+}
+
+.title {
+  font-family: 'AvantGardePro', sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #545454;
+  margin-bottom: 10px;
+}
+
+.address {
+  font-family: 'AvantGardePro', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #545454;
+}
+
+.pinContainer {
+  margin-left: 20px;
+}
+
+.pinCircle {
+  width: 80px;
+  height: 80px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.mapWrapper {
+  width: 100%;
+  background-color: var(--color-primary);
+  padding: 0 7%; /* Makes blue borders a bit narrower */
+  height: 335px; /* Decreased height by 15px */
+  display: flex;
+}
+
+.mapIframe {
+  width: 100%;
+  height: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  border-top: none;
+  border-bottom: none;
+  border-left: 30px solid #ffffff; /* Triple width */
+  border-right: 30px solid #ffffff; /* Triple width */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .headerContainer {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  .pinContainer {
+    margin-left: 0;
+  }
+  .mapWrapper {
+    padding: 0;
+  }
+}
