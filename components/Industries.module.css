@@ -6,7 +6,7 @@
 .mainTitle {
   font-family: 'AvantGardePro', sans-serif;
   font-size: 2.5rem;
-  font-weight: 500;
+  font-weight: bold;
   color: var(--color-text);
   margin-bottom: 50px;
   text-align: center;
@@ -75,8 +75,9 @@
 }
 
 .cardTitle {
-  color: var(--color-primary);
-  font-family: 'AvantGardePro', sans-serif;
+  color: black;
+  filter: brightness(0) invert(41%) sepia(21%) saturate(1251%) hue-rotate(164deg) brightness(97%) contrast(90%);
+  font-family: 'Poppins', sans-serif;
   font-weight: bold;
   font-size: 0.95rem;
   text-align: center;
@@ -95,9 +96,11 @@
 }
 
 .cardText {
-  font-family: 'AvantGardePro', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
   font-size: 0.75rem;
-  color: #777777;
+  color: black;
+  filter: brightness(0) invert(41%) sepia(21%) saturate(1251%) hue-rotate(164deg) brightness(97%) contrast(90%);
   text-align: center;
   line-height: 1.5;
   margin-bottom: 20px;

@@ -1,0 +1,123 @@
+.section {
+  padding: 60px 0;
+  background-color: #ffffff;
+}
+
+.mainTitle {
+  font-family: 'AvantGardePro', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--color-text);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.mainTitle strong {
+  font-weight: bold;
+}
+
+.accordionContainer {
+  display: flex;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.accordionItem {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: flex 0.4s ease-in-out;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Base colors for inactive state */
+.accordionItem:nth-child(odd) {
+  background-color: #24445c; /* Dark blue */
+}
+
+.accordionItem:nth-child(even) {
+  background-color: #557d99; /* Lighter blue */
+}
+
+.accordionItem.active {
+  flex: 3.5; 
+}
+
+.bgImage {
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.accordionItem.active .bgImage {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: align-items 0.4s ease-in-out;
+}
+
+.accordionItem.active .overlay {
+  align-items: flex-end;
+}
+
+.itemTitle {
+  font-family: 'AvantGardePro', sans-serif;
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: #ffffff;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0 5px;
+  line-height: 1.2;
+  width: 100%;
+  transition: all 0.4s ease-in-out;
+  word-wrap: break-word;
+}
+
+.accordionItem.active .itemTitle {
+  padding: 20px 10px;
+}
+
+/* Banner colors for active state */
+.accordionItem.active:nth-child(odd) .itemTitle {
+  background-color: #24445c;
+}
+
+.accordionItem.active:nth-child(even) .itemTitle {
+  background-color: #557d99;
+}
+
+@media (max-width: 992px) {
+  .accordionContainer {
+    flex-direction: column;
+    height: 800px;
+  }
+  .accordionItem {
+    width: 100%;
+  }
+  .accordionItem.active {
+    flex: 3;
+  }
+  .overlay {
+    align-items: center;
+  }
+  .accordionItem.active .overlay {
+    align-items: center; /* keep centered on mobile for easier reading */
+  }
+  .accordionItem.active .itemTitle {
+    background-color: rgba(0,0,0,0.5); /* uniform background on mobile */
+  }
+}

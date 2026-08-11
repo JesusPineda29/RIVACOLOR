@@ -1,0 +1,101 @@
+.section {
+  padding: 100px 0;
+  background-color: #ffffff;
+}
+
+.mainTitle {
+  font-family: 'AvantGardePro', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: #5b5b5b; /* Dark gray for title */
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.mainTitle strong {
+  font-weight: bold;
+}
+
+.gridContainer {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: stretch; /* So borders match heights */
+}
+
+.gridItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid #dcdcdc; /* Light gray separator */
+  padding: 0 10px;
+  cursor: pointer; /* Interaction hint */
+}
+
+.gridItem:last-child {
+  border-right: none;
+}
+
+.iconWrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.iconOff {
+  object-fit: contain;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.iconOn {
+  object-fit: contain;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.gridItem:hover .iconOff {
+  opacity: 0;
+}
+
+.gridItem:hover .iconOn {
+  opacity: 1;
+}
+
+.itemTitle {
+  font-family: 'AvantGardePro', sans-serif;
+  font-weight: 900;
+  -webkit-text-stroke: 0.5px currentColor; /* Makes the font artificially thicker */
+  font-size: 1.05rem;
+  color: #666666; /* Gray text for inactive state */
+  text-align: center;
+  white-space: pre-line; /* Allows the \n to work */
+  line-height: 1.2;
+  transition: color 0.3s ease;
+}
+
+/* Optional: change text color slightly on hover to match the reference style if needed, but for now it just matches the icon state change */
+.gridItem:hover .itemTitle {
+  color: #444444; /* Slightly darker on hover */
+}
+
+@media (max-width: 992px) {
+  .gridContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .gridItem {
+    flex: 0 0 33.333%;
+    border-right: none; /* Can add bottom borders instead or keep clean */
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .gridItem {
+    flex: 0 0 50%;
+  }
+}

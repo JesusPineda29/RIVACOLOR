@@ -7,7 +7,7 @@
 .topTitle, .bottomTitle {
   font-family: 'AvantGardePro', sans-serif;
   font-size: 2.2rem;
-  font-weight: 500; /* Regular weight for non-bold words */
+  font-weight: bold;
   color: #545454;
 }
 

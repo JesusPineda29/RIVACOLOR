@@ -74,19 +74,22 @@
 .cardTitle {
   font-family: 'AvantGardePro', sans-serif;
   font-size: 1.1rem;
-  font-weight: 500; /* Medium */
+  font-weight: bold;
   color: var(--color-text); /* #545454 */
   transition: color 0.3s ease, font-weight 0.1s ease;
 }
 
-/* Selected state styling */
+/* Hover & Selected state styling */
+.card:hover .iconWrapper,
 .card.selected .iconWrapper {
   opacity: 1;
   /* Use brightness(0) to turn #545454 to black, then apply exact filter for #497593 */
   filter: brightness(0) invert(41%) sepia(21%) saturate(1251%) hue-rotate(164deg) brightness(97%) contrast(90%);
 }
 
+.card:hover .cardTitle,
 .card.selected .cardTitle {
-  color: var(--color-primary); /* #497593 */
+  color: black;
+  filter: brightness(0) invert(41%) sepia(21%) saturate(1251%) hue-rotate(164deg) brightness(97%) contrast(90%);
   font-weight: bold; /* Bold */
 }
