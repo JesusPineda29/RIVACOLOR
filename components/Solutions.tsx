@@ -65,7 +65,7 @@ export default function Solutions() {
           {solutionsData.map((item) => (
             <div key={item.id} className={styles.card}>
               <div className={styles.imageWrapper}>
-                <Image src={item.photo} alt={item.title} fill className={styles.photo} />
+                <Image src={item.photo} alt={item.title} fill sizes="(max-width: 768px) 100vw, 33vw" className={styles.photo} />
               </div>
               <div className={styles.titleBand}>
                 {item.title}

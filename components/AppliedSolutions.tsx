@@ -41,6 +41,7 @@ export default function AppliedSolutions() {
                src={images[currentIndex]} 
                alt={`Producto real ${currentIndex + 1}`} 
                fill 
+               sizes="(max-width: 992px) 100vw, 50vw"
                className={styles.carouselImage}
              />
           </div>

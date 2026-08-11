@@ -60,7 +60,7 @@ export default function Industries() {
               <div className={styles.topIconWrapper}>
                 <Image src={item.icon} alt={`${item.title} icon`} width={150} height={110} className={styles.topIconImg} />
               </div>
-              <Image src={item.photo} alt={item.title} fill className={styles.photo} />
+              <Image src={item.photo} alt={item.title} fill sizes="(max-width: 768px) 100vw, 33vw" className={styles.photo} />
             </div>
             
             <div className={styles.contentBox}>

@@ -40,6 +40,7 @@ export default function Functionalities() {
                 alt={item.title} 
                 fill 
                 sizes="(max-width: 992px) 100vw, 33vw"
+                priority={isActive}
                 className={styles.bgImage} 
               />
               
