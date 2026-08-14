@@ -64,3 +64,20 @@
   color: var(--color-text);
   opacity: 0.5;
 }
+
+@media (max-width: 768px) {
+  .topBarInner {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .contactInfo {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .separator {
+    display: none;
+  }
+}

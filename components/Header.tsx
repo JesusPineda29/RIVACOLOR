@@ -6,6 +6,7 @@ import styles from './Header.module.css';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +15,10 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
@@ -24,18 +29,24 @@ export default function Header() {
           </svg>
         </Link>
         
-        <nav className={styles.nav}>
-          <Link href="/nosotros" className={styles.navLink}>Nosotros</Link>
+        <button className={styles.hamburger} onClick={toggleMobileMenu} aria-label="Menú">
+          <span className={`${styles.bar} ${isMobileMenuOpen ? styles.bar1Open : ''}`}></span>
+          <span className={`${styles.bar} ${isMobileMenuOpen ? styles.bar2Open : ''}`}></span>
+          <span className={`${styles.bar} ${isMobileMenuOpen ? styles.bar3Open : ''}`}></span>
+        </button>
+
+        <nav className={`${styles.nav} ${isMobileMenuOpen ? styles.navOpen : ''}`}>
+          <Link href="/nosotros" className={styles.navLink} onClick={() => setIsMobileMenuOpen(false)}>Nosotros</Link>
           <span className={styles.separator}>|</span>
-          <Link href="/productos" className={styles.navLinkActive}>Productos</Link>
+          <Link href="/productos" className={styles.navLinkActive} onClick={() => setIsMobileMenuOpen(false)}>Productos</Link>
           <span className={styles.separator}>|</span>
-          <Link href="/industrias" className={styles.navLink}>Industrias</Link>
+          <Link href="/industrias" className={styles.navLink} onClick={() => setIsMobileMenuOpen(false)}>Industrias</Link>
           <span className={styles.separator}>|</span>
-          <Link href="/certificaciones" className={styles.navLink}>Certificaciones</Link>
+          <Link href="/certificaciones" className={styles.navLink} onClick={() => setIsMobileMenuOpen(false)}>Certificaciones</Link>
           <span className={styles.separator}>|</span>
-          <Link href="/cotizaciones" className={styles.navLink}>Cotizaciones</Link>
+          <Link href="/cotizaciones" className={styles.navLink} onClick={() => setIsMobileMenuOpen(false)}>Cotizaciones</Link>
           <span className={styles.separator}>|</span>
-          <Link href="/contacto" className={styles.navLink}>Contacto</Link>
+          <Link href="/contacto" className={styles.navLink} onClick={() => setIsMobileMenuOpen(false)}>Contacto</Link>
         </nav>
 
         <div className={styles.logo}>
