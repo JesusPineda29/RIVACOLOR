@@ -1,0 +1,31 @@
+.reveal {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.up {
+  transform: translateY(40px);
+}
+
+.zoom {
+  transform: scale(0.94);
+}
+
+.fade {
+  transform: none;
+}
+
+/* Debe ir después de las variantes para ganarles por orden de cascada. */
+.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

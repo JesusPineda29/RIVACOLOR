@@ -1,0 +1,257 @@
+.section {
+  padding: 70px 20px 60px;
+  background-color: #ffffff;
+  font-family: var(--font-poppins);
+}
+
+.steps {
+  /* Tiempo que tarda el trazo en recorrer una columna: marca el ritmo
+     de toda la animación de la línea del tiempo. */
+  --step-gap: 0.28s;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1300px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: start;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.value {
+  font-size: clamp(1rem, 2.2vw, 2.125rem);
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  margin-bottom: 0.35em;
+}
+
+.iconWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Connecting line: left half takes the previous milestone colour,
+   right half the current one, so transitions land between circles. */
+.iconWrapper::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -1px;
+  right: -1px;
+  height: 6px;
+  transform: translateY(-50%);
+  background: linear-gradient(
+    to right,
+    var(--prev-color) 0 50%,
+    currentColor 50% 100%
+  );
+}
+
+.step:first-child .iconWrapper::after,
+.step:last-child .iconWrapper::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: currentColor;
+  transform: translateY(-50%);
+}
+
+.step:first-child .iconWrapper::after {
+  left: 0;
+}
+
+.step:last-child .iconWrapper::after {
+  right: 0;
+}
+
+.icon {
+  position: relative;
+  z-index: 1;
+  width: clamp(56px, 7.1vw, 102px);
+  height: auto;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
+.label {
+  font-size: clamp(0.6875rem, 1.2vw, 1.0625rem);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 1.4em;
+  max-width: 92%;
+}
+
+.text {
+  font-family: var(--font-poppins);
+  font-weight: 300;
+  font-size: clamp(0.75rem, 1.05vw, 0.9375rem);
+  line-height: 1.55;
+  color: #4f4f4f;
+  margin-top: 2.6em;
+  max-width: 82%;
+}
+
+@media (max-width: 900px) {
+  .steps {
+    /* Sin línea que dibujar, el escalonado se acorta. */
+    --step-gap: 0.12s;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 16px;
+  }
+
+  .iconWrapper::before,
+  .step:first-child .iconWrapper::after,
+  .step:last-child .iconWrapper::after {
+    display: none;
+  }
+
+  .value {
+    font-size: 1.35rem;
+  }
+
+  .icon {
+    width: 72px;
+  }
+
+  .label {
+    font-size: 0.8125rem;
+  }
+
+  .text {
+    font-size: 0.8125rem;
+    margin-top: 1.2em;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .section {
+    padding: 45px 20px;
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 34px 14px;
+  }
+}
+
+/* ---- Animación: la línea se dibuja de izquierda a derecha y cada hito
+       aparece justo cuando el trazo lo alcanza. --step-delay es el momento
+       en que le toca el turno a esta columna. ---- */
+
+.step {
+  --step-delay: calc(var(--index) * var(--step-gap));
+}
+
+/* El trazo: crece desde su borde izquierdo. Su duración coincide con
+   --step-gap para que los seis tramos formen una línea continua. */
+.iconWrapper::before {
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--step-gap) linear;
+  transition-delay: var(--step-delay);
+}
+
+.visible .iconWrapper::before {
+  transform: translateY(-50%) scaleX(1);
+}
+
+/* Puntos de los extremos: el primero abre el recorrido, el último lo cierra. */
+.step:first-child .iconWrapper::after,
+.step:last-child .iconWrapper::after {
+  transform: translateY(-50%) scale(0);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.step:last-child .iconWrapper::after {
+  transition-delay: calc(var(--step-delay) + var(--step-gap));
+}
+
+.visible .step:first-child .iconWrapper::after,
+.visible .step:last-child .iconWrapper::after {
+  transform: translateY(-50%) scale(1);
+}
+
+/* El círculo brota cuando el trazo llega a su posición. */
+.icon {
+  opacity: 0;
+  transform: scale(0.25);
+  transition: opacity 0.25s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition-delay: calc(var(--step-delay) + var(--step-gap) * 0.55);
+}
+
+.visible .icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Año, etiqueta y descripción entran detrás del círculo, en cascada. */
+.value,
+.label,
+.text {
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.value {
+  transform: translateY(14px);
+  transition-delay: calc(var(--step-delay) + var(--step-gap) * 0.9);
+}
+
+.label {
+  transform: translateY(12px);
+  transition-delay: calc(var(--step-delay) + var(--step-gap) * 1.2);
+}
+
+.text {
+  transform: translateY(12px);
+  transition-delay: calc(var(--step-delay) + var(--step-gap) * 1.5);
+}
+
+.visible .value,
+.visible .label,
+.visible .text {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iconWrapper::before,
+  .step:first-child .iconWrapper::after,
+  .step:last-child .iconWrapper::after,
+  .icon,
+  .value,
+  .label,
+  .text {
+    opacity: 1;
+    transition: none;
+  }
+
+  .iconWrapper::before {
+    transform: translateY(-50%) scaleX(1);
+  }
+
+  .step:first-child .iconWrapper::after,
+  .step:last-child .iconWrapper::after {
+    transform: translateY(-50%) scale(1);
+  }
+
+  .icon,
+  .value,
+  .label,
+  .text {
+    transform: none;
+  }
+}

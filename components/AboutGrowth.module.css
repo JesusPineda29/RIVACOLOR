@@ -1,0 +1,58 @@
+.section {
+  padding: 80px 0;
+  background-color: #ffffff;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.textCol {
+  flex: 1 1 55%;
+}
+
+.paragraph {
+  font-family: var(--font-poppins);
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.75;
+  color: #3a3a3a;
+  text-align: justify;
+}
+
+.paragraph strong {
+  font-weight: 700;
+}
+
+.imageCol {
+  flex: 1 1 42%;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 992px) {
+  .section {
+    padding: 55px 0;
+  }
+
+  .inner {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .paragraph {
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  .imageCol {
+    width: 100%;
+    max-width: 520px;
+  }
+}

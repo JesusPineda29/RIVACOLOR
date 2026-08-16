@@ -1,12 +1,23 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import styles from './Header.module.css';
+
+const navItems = [
+  { href: '/nosotros', label: 'Nosotros' },
+  { href: '/productos', label: 'Productos' },
+  { href: '/industrias', label: 'Industrias' },
+  { href: '/certificaciones', label: 'Certificaciones' },
+  { href: '/cotizaciones', label: 'Cotizaciones' },
+  { href: '/contacto', label: 'Contacto' },
+];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,17 +47,18 @@ export default function Header() {
         </button>
 
         <nav className={`${styles.nav} ${isMobileMenuOpen ? styles.navOpen : ''}`}>
-          <Link href="/nosotros" className={styles.navLink} onClick={() => setIsMobileMenuOpen(false)}>Nosotros</Link>
-          <span className={styles.separator}>|</span>
-          <Link href="/productos" className={styles.navLinkActive} onClick={() => setIsMobileMenuOpen(false)}>Productos</Link>
-          <span className={styles.separator}>|</span>
-          <Link href="/industrias" className={styles.navLink} onClick={() => setIsMobileMenuOpen(false)}>Industrias</Link>
-          <span className={styles.separator}>|</span>
-          <Link href="/certificaciones" className={styles.navLink} onClick={() => setIsMobileMenuOpen(false)}>Certificaciones</Link>
-          <span className={styles.separator}>|</span>
-          <Link href="/cotizaciones" className={styles.navLink} onClick={() => setIsMobileMenuOpen(false)}>Cotizaciones</Link>
-          <span className={styles.separator}>|</span>
-          <Link href="/contacto" className={styles.navLink} onClick={() => setIsMobileMenuOpen(false)}>Contacto</Link>
+          {navItems.map((item, index) => (
+            <Fragment key={item.href}>
+              {index > 0 && <span className={styles.separator}>|</span>}
+              <Link
+                href={item.href}
+                className={pathname === item.href ? styles.navLinkActive : styles.navLink}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            </Fragment>
+          ))}
         </nav>
 
         <div className={styles.logo}>

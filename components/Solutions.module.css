@@ -2,6 +2,7 @@
   background-color: #ffffff;
   padding: 60px 0;
   text-align: center;
+  overflow-x: hidden;
 }
 
 .topTitle, .bottomTitle {
@@ -142,6 +143,12 @@
     padding: 20px 60px;
     mask-image: none;
     -webkit-mask-image: none;
+  }
+  .prevBtn {
+    left: 0;
+  }
+  .nextBtn {
+    right: 0;
   }
   .topTitle, .bottomTitle {
     font-size: 1.8rem;
