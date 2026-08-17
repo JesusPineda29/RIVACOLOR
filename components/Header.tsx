@@ -32,14 +32,16 @@ export default function Header() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // On another page the Link already lands at the top; when we're on the home
-  // page Next skips the navigation, so scroll back up by hand.
-  const handleHomeClick = () => {
+  // On another page the Link already lands at the top; when we're already on
+  // the target page Next skips the navigation, so scroll back up by hand.
+  const scrollToTopIfOn = (href: string) => {
     setIsMobileMenuOpen(false);
-    if (pathname === '/') {
+    if (pathname === href) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
+  const handleHomeClick = () => scrollToTopIfOn('/');
 
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
@@ -63,7 +65,7 @@ export default function Header() {
               <Link
                 href={item.href}
                 className={pathname === item.href ? styles.navLinkActive : styles.navLink}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => scrollToTopIfOn(item.href)}
               >
                 {item.label}
               </Link>
