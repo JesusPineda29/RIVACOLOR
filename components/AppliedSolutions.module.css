@@ -45,35 +45,6 @@
   animation: fadeEffect 0.5s ease-in-out;
 }
 
-.navBtn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.7);
-  border: none;
-  cursor: pointer;
-  z-index: 10;
-  opacity: 0.8;
-  transition: opacity 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  padding: 5px;
-}
-
-.navBtn:hover {
-  opacity: 1;
-}
-
-.prevBtn {
-  left: -20px;
-}
-
-.nextBtn {
-  right: -20px;
-}
-
 .textCol {
   flex: 1;
   display: flex;
@@ -194,11 +165,5 @@
     padding-right: 0;
     padding-left: 0;
     margin-top: 20px;
-  }
-  .prevBtn {
-    left: 10px;
-  }
-  .nextBtn {
-    right: 10px;
   }
 }

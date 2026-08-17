@@ -1,6 +1,7 @@
 "use client";
 
 import Image from 'next/image';
+import { useInView } from './useInView';
 import styles from './Products.module.css';
 
 const products = [
@@ -43,12 +44,14 @@ const products = [
 ];
 
 export default function Products() {
+  const { ref: gridRef, isInView } = useInView<HTMLDivElement>();
+
   return (
     <section className={styles.section}>
       <h2 className={styles.mainTitle}>
         Encuentra el <strong>Producto</strong> adecuado.
       </h2>
-      <div className={styles.gridContainer}>
+      <div ref={gridRef} className={`${styles.gridContainer} ${isInView ? styles.gridVisible : ''}`}>
         {products.map((product) => (
           <div key={product.id} className={styles.gridItem}>
             <div className={styles.iconWrapper}>

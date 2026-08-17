@@ -38,6 +38,42 @@
   border-right: none;
 }
 
+/* Entrada escalonada al aparecer en pantalla. */
+.gridContainer > .gridItem {
+  opacity: 0;
+}
+
+.gridVisible > .gridItem {
+  animation: itemIn 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.gridVisible > .gridItem:nth-child(2) { animation-delay: 80ms; }
+.gridVisible > .gridItem:nth-child(3) { animation-delay: 160ms; }
+.gridVisible > .gridItem:nth-child(4) { animation-delay: 240ms; }
+.gridVisible > .gridItem:nth-child(5) { animation-delay: 320ms; }
+.gridVisible > .gridItem:nth-child(6) { animation-delay: 400ms; }
+
+@keyframes itemIn {
+  from {
+    opacity: 0;
+    translate: 0 30px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gridContainer > .gridItem {
+    opacity: 1;
+  }
+
+  .gridVisible > .gridItem {
+    animation: none;
+  }
+}
+
 .iconWrapper {
   position: relative;
   width: 80px;

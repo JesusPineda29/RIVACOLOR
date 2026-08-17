@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from './AppliedSolutions.module.css';
+
+const SLIDE_INTERVAL = 4000;
 
 const images = [
   '/assets/bloque5/FOTO_1.jpg',
@@ -15,13 +17,12 @@ const images = [
 export default function AppliedSolutions() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, SLIDE_INTERVAL);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <section className={styles.section}>
@@ -31,10 +32,6 @@ export default function AppliedSolutions() {
 
       <div className={styles.layoutWrapper}>
         <div className={styles.carouselCol}>
-          <button className={`${styles.navBtn} ${styles.prevBtn}`} onClick={prevSlide}>
-            <Image src="/assets/bloque5/ICONO_FLECHA_RETROCEDER.png" alt="Anterior" width={50} height={50} />
-          </button>
-          
           <div className={styles.imageContainer}>
              <Image 
                key={currentIndex}
@@ -45,10 +42,6 @@ export default function AppliedSolutions() {
                className={styles.carouselImage}
              />
           </div>
-
-          <button className={`${styles.navBtn} ${styles.nextBtn}`} onClick={nextSlide}>
-            <Image src="/assets/bloque5/ICONO_FLECHA_AVANZAR.png" alt="Siguiente" width={50} height={50} />
-          </button>
         </div>
 
         <div className={styles.textCol}>

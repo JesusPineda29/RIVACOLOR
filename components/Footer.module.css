@@ -1,4 +1,6 @@
 .footerSection {
+  /* Clears the sticky header when navigating to #contacto. */
+  scroll-margin-top: 90px;
   padding-top: 60px;
   background-color: #ffffff;
   display: flex;
@@ -17,13 +19,13 @@
 .mainBlockContainer {
   display: flex;
   width: 100%;
-  height: 350px;
+  height: 250px;
   align-items: center;
   position: relative;
 }
 
 .leftBlueBlock {
-  flex: 0 0 65%;
+  flex: 0 0 61%;
   height: 100%;
   background-color: var(--color-primary); /* #497593 */
   position: relative;
@@ -49,31 +51,40 @@
   margin-bottom: 20px;
 }
 
-.column p {
+.column p,
+.contactLink {
   font-family: 'AvantGardePro', sans-serif;
   font-size: 1.1rem;
   margin-bottom: 5px;
   letter-spacing: 0.5px;
 }
 
+.contactLink {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.contactLink:hover,
+.contactLink:focus-visible {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
 .floatingIcon {
   position: absolute;
-  right: -55px; /* Half of circle width to overlap edge */
+  /* The @ circle sits off-center inside the PNG (it carries its own drop
+     shadow), so the offsets center the circle itself on the block edge. */
+  right: -64px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-38.5%);
   z-index: 10;
 }
 
-.placeholderCircle {
-  width: 110px;
-  height: 110px;
-  background-color: #f2f2f2;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  border: 4px solid #ffffff;
+.arrobaIcon {
+  display: block;
+  width: 170px;
+  height: auto;
 }
 
 .logoArea {
@@ -81,26 +92,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 20px;
 }
 
-.logoPlaceholder {
-  font-family: 'AvantGardePro', sans-serif;
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: var(--color-primary);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logoRedMark {
-  color: #c92a2a;
-  font-size: 4rem;
-  line-height: 1;
+.logoImage {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
 }
 
 .rightBlueBlock {
-  flex: 0 0 8%;
+  flex: 0 0 5%;
   height: 100%;
   background-color: var(--color-primary);
 }
@@ -172,10 +174,10 @@
   .floatingIcon {
     right: 50%;
     top: auto;
-    bottom: -55px; /* Overlap at bottom instead of right */
-    transform: translateX(50%);
+    bottom: -105px; /* Overlap at bottom instead of right */
+    transform: translateX(37.5%);
   }
-  
+
   .logoArea {
     flex: none;
     width: 100%;

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, Fragment } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Header.module.css';
@@ -10,8 +11,8 @@ const navItems = [
   { href: '/productos', label: 'Productos' },
   { href: '/industrias', label: 'Industrias' },
   { href: '/certificaciones', label: 'Certificaciones' },
-  { href: '/cotizaciones', label: 'Cotizaciones' },
-  { href: '/contacto', label: 'Contacto' },
+  { href: '#contacto', label: 'Cotizaciones' },
+  { href: '#contacto', label: 'Contacto' },
 ];
 
 export default function Header() {
@@ -31,10 +32,19 @@ export default function Header() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // On another page the Link already lands at the top; when we're on the home
+  // page Next skips the navigation, so scroll back up by hand.
+  const handleHomeClick = () => {
+    setIsMobileMenuOpen(false);
+    if (pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.headerInner}`}>
-        <Link href="/" className={styles.homeIcon} aria-label="Inicio">
+        <Link href="/" className={styles.homeIcon} aria-label="Inicio" onClick={handleHomeClick}>
           <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
             <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
           </svg>
@@ -48,7 +58,7 @@ export default function Header() {
 
         <nav className={`${styles.nav} ${isMobileMenuOpen ? styles.navOpen : ''}`}>
           {navItems.map((item, index) => (
-            <Fragment key={item.href}>
+            <Fragment key={item.label}>
               {index > 0 && <span className={styles.separator}>|</span>}
               <Link
                 href={item.href}
@@ -61,9 +71,16 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className={styles.logo}>
-          <span className={styles.logoText}>RIVACOLOR</span>
-        </div>
+        <Link href="/" className={styles.logo} aria-label="Inicio" onClick={handleHomeClick}>
+          <Image
+            src="/assets/LOGOTIPO_RIVACOLOR.svg"
+            alt="Rivacolor"
+            width={142}
+            height={68}
+            priority
+            className={styles.logoImage}
+          />
+        </Link>
       </div>
     </header>
   );

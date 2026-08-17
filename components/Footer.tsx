@@ -1,8 +1,22 @@
+import Image from 'next/image';
 import styles from './Footer.module.css';
+
+const emails = [
+  'ventas@rivacolor.com.mx',
+  'ventas2@rivacolor.com.mx',
+  'ventas3@rivacolor.com.mx',
+  'ventas4@rivacolor.com.mx',
+];
+
+const phones = [
+  { label: '55 5691 7794', tel: '+525556917794' },
+  { label: '55 5693 7258', tel: '+525556937258' },
+  { label: '55 5942 3013', tel: '+525559423013' },
+];
 
 export default function Footer() {
   return (
-    <footer className={styles.footerSection}>
+    <footer id="contacto" className={styles.footerSection}>
       <h2 className={styles.title}>Contáctanos</h2>
       
       <div className={styles.mainBlockContainer}>
@@ -12,44 +26,53 @@ export default function Footer() {
             <div className={styles.column}>
               <div className={styles.iconWrapper}>
                 {/* Envelope SVG */}
-                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="2" y="4" width="20" height="16" rx="2" />
                   <path d="M2 4l10 8 10-8" />
                 </svg>
               </div>
-              <p>ventas@rivacolor.com.mx</p>
-              <p>ventas2@rivacolor.com.mx</p>
-              <p>ventas3@rivacolor.com.mx</p>
-              <p>ventas4@rivacolor.com.mx</p>
+              {emails.map((email) => (
+                <a key={email} href={`mailto:${email}`} className={styles.contactLink}>
+                  {email}
+                </a>
+              ))}
             </div>
             
             <div className={styles.column}>
               <div className={styles.iconWrapper}>
                 {/* Phone SVG */}
-                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
                 </svg>
               </div>
-              <p>55 5691 7794</p>
-              <p>55 5693 7258</p>
-              <p>55 5942 3013</p>
+              {phones.map((phone) => (
+                <a key={phone.tel} href={`tel:${phone.tel}`} className={styles.contactLink}>
+                  {phone.label}
+                </a>
+              ))}
             </div>
             
           </div>
           
           <div className={styles.floatingIcon}>
-             {/* Placeholder for the 3D phone icon */}
-             <div className={styles.placeholderCircle}>
-               <span style={{ fontSize: '2rem', color: '#497593', fontWeight: 'bold' }}>@</span>
-             </div>
+            <Image
+              src="/assets/IMG_ARROBA.png"
+              alt="Contacto por correo electrónico"
+              width={170}
+              height={170}
+              className={styles.arrobaIcon}
+            />
           </div>
         </div>
 
         <div className={styles.logoArea}>
-           {/* Logo Placeholder */}
-           <div className={styles.logoPlaceholder}>
-             <span className={styles.logoRedMark}>&lt;</span> RIVACOLOR
-           </div>
+          <Image
+            src="/assets/LOGOTIPO_RIVACOLOR.svg"
+            alt="Rivacolor"
+            width={260}
+            height={124}
+            className={styles.logoImage}
+          />
         </div>
         
         <div className={styles.rightBlueBlock}></div>

@@ -59,6 +59,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'AvantGardePro', sans-serif;
   color: var(--color-text);

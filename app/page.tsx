@@ -9,6 +9,7 @@ import Functionalities from '@/components/Functionalities';
 import Products from '@/components/Products';
 import Location from '@/components/Location';
 import Footer from '@/components/Footer';
+import Reveal from '@/components/Reveal';
 
 export default function Home() {
   return (
@@ -16,13 +17,27 @@ export default function Home() {
       <TopBar />
       <Header />
       <HeroCarousel />
-      <Features />
-      <Industries />
-      <Solutions />
-      <AppliedSolutions />
-      <Functionalities />
-      <Products />
-      <Location />
+      <Reveal>
+        <Features />
+      </Reveal>
+      <Reveal>
+        <Industries />
+      </Reveal>
+      <Reveal>
+        <Solutions />
+      </Reveal>
+      <Reveal variant="zoom">
+        <AppliedSolutions />
+      </Reveal>
+      <Reveal>
+        <Functionalities />
+      </Reveal>
+      <Reveal>
+        <Products />
+      </Reveal>
+      <Reveal variant="fade">
+        <Location />
+      </Reveal>
       <Footer />
     </main>
   );

@@ -1,0 +1,23 @@
+.content {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.title {
+  font-family: 'AvantGardePro', sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.text {
+  font-family: 'AvantGardePro', sans-serif;
+  font-size: 1.2rem;
+  color: var(--color-text-light);
+}

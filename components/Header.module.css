@@ -57,17 +57,19 @@
   opacity: 0.5;
 }
 
+/* Fixed height so a taller logo overflows instead of growing the header bar. */
 .logo {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   height: 40px;
 }
 
-.logoText {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--color-primary);
-  letter-spacing: 1px;
+.logoImage {
+  display: block;
+  width: auto;
+  height: 68px;
+  transition: filter 0.3s ease;
 }
 
 .scrolled {
@@ -78,9 +80,13 @@
 .scrolled .homeIcon,
 .scrolled .navLink,
 .scrolled .navLinkActive,
-.scrolled .separator,
-.scrolled .logoText {
+.scrolled .separator {
   color: #ffffff;
+}
+
+/* The logo is a two-color SVG; on the blue scrolled bar it turns solid white. */
+.scrolled .logoImage {
+  filter: brightness(0) invert(1);
 }
 
 .scrolled .navLink:hover {
@@ -167,7 +173,7 @@
 }
 
 @media (max-width: 576px) {
-  .logoText {
-    font-size: 1.2rem;
+  .logoImage {
+    height: 50px;
   }
 }

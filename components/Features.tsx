@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { useInView } from './useInView';
 import styles from './Features.module.css';
 
 const features = [
@@ -14,6 +15,7 @@ const features = [
 
 export default function Features() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const { ref: gridRef, isInView } = useInView<HTMLDivElement>();
 
   return (
     <section className={styles.featuresSection}>
@@ -22,7 +24,7 @@ export default function Features() {
           <strong>Descubre Rivacolor</strong> a tu manera
         </h2>
 
-        <div className={styles.grid}>
+        <div ref={gridRef} className={`${styles.grid} ${isInView ? styles.gridVisible : ''}`}>
           {features.map((feature) => {
             const isSelected = selectedId === feature.id;
             return (
