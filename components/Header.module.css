@@ -35,8 +35,22 @@
 .navLink, .navLinkActive {
   font-size: 1rem;
   font-weight: 500;
-  transition: color 0.3s ease;
+  /* Remove color transition to prevent the weird purple flash */
+  transition: transform 0.3s ease;
   position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navLink::after, .navLinkActive::after {
+  content: attr(data-text);
+  font-weight: bold;
+  height: 0;
+  visibility: hidden;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
 }
 
 .navLink {
@@ -44,7 +58,9 @@
 }
 
 .navLink:hover {
-  color: #2c4c63;
+  color: #b20e10;
+  font-weight: bold;
+  transform: scale(1.05);
 }
 
 .navLinkActive {
@@ -90,7 +106,7 @@
 }
 
 .scrolled .navLink:hover {
-  color: #d8e5ee;
+  color: #b20e10;
 }
 
 .hamburger {

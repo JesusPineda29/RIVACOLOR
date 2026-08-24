@@ -66,6 +66,7 @@ export default function Header() {
                 href={item.href}
                 className={pathname === item.href ? styles.navLinkActive : styles.navLink}
                 onClick={() => scrollToTopIfOn(item.href)}
+                data-text={item.label}
               >
                 {item.label}
               </Link>

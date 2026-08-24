@@ -83,9 +83,6 @@ export default function Solutions() {
         </button>
       </div>
 
-      <h2 className={styles.bottomTitle}>
-        Soluciones <strong>aplicadas</strong> a <strong>productos</strong> reales.
-      </h2>
     </section>
   );
 }

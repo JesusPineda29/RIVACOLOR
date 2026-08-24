@@ -50,9 +50,15 @@ export default function AppliedSolutions() {
               Aplicaciones reales donde el color, la funcionalidad y la innovación cobran vida.
             </p>
             
-            <p className={styles.boldText}>
-              Panificación | Confitería | Bebidas | Snacks
-            </p>
+            <div className={styles.boldText}>
+              <span>Panificación</span>
+              <span>|</span>
+              <span>Confitería</span>
+              <span>|</span>
+              <span>Bebidas</span>
+              <span>|</span>
+              <span>Snacks</span>
+            </div>
             
             <div className={styles.helpSection}>
               <p className={styles.questionText}>
