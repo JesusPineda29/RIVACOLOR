@@ -73,18 +73,17 @@
 
 .floatingIcon {
   position: absolute;
-  /* The @ circle sits off-center inside the PNG (it carries its own drop
-     shadow), so the offsets center the circle itself on the block edge. */
-  right: -64px;
+  right: -68px;
   top: 50%;
-  transform: translateY(-38.5%);
+  transform: translateY(-50%);
   z-index: 10;
 }
 
 .arrobaIcon {
   display: block;
-  width: 170px;
+  width: 135px;
   height: auto;
+  filter: drop-shadow(-25px 25px 20px rgba(0, 0, 0, 0.7));
 }
 
 .logoArea {
@@ -174,8 +173,8 @@
   .floatingIcon {
     right: 50%;
     top: auto;
-    bottom: -105px; /* Overlap at bottom instead of right */
-    transform: translateX(37.5%);
+    bottom: -68px;
+    transform: translateX(50%);
   }
 
   .logoArea {

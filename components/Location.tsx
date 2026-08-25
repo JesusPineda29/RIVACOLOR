@@ -13,10 +13,10 @@ export default function Location() {
         </div>
         <div className={styles.pinContainer}>
           <Image 
-            src="/assets/ICONO_UBICACION.png" 
+            src="/assets/ubicacion.png" 
             alt="Ubicación" 
-            width={120} 
-            height={120} 
+            width={35} 
+            height={35} 
           />
         </div>
       </div>

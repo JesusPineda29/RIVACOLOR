@@ -56,10 +56,10 @@ export default function Footer() {
           
           <div className={styles.floatingIcon}>
             <Image
-              src="/assets/IMG_ARROBA.png"
+              src="/assets/IMG_ARROBA_sinsombra.png"
               alt="Contacto por correo electrónico"
-              width={170}
-              height={170}
+              width={135}
+              height={135}
               className={styles.arrobaIcon}
             />
           </div>
