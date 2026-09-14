@@ -33,16 +33,15 @@
 
 .pinContainer {
   margin-left: 20px;
-  width: 65px;
-  height: 65px;
-  background-color: #f5f5f5;
-  border-radius: 50%;
-  border: 1px solid #ebebeb;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
+}
+
+.pinContainer img {
+  /* Sombra suave hacia la esquina inferior derecha */
+  filter: drop-shadow(6px 8px 12px rgba(0, 0, 0, 0.22));
 }
 
 .mapWrapper {

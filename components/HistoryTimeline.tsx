@@ -42,7 +42,7 @@ const milestones = [
   },
   {
     value: 'HOY',
-    label: 'CALIDAD Y CONFIANZA',
+    label: 'CALIDAD Y\nCONFIANZA',
     color: '#0e65af',
     icon: '/assets/nosotros/timeline/PASO_6.png',
     text: 'Contamos con certificación ISO 9001:2015 / FSSC 22000, procesos HACCP y cumplimiento con NOM-251, asegurando calidad y control de riesgos.',
