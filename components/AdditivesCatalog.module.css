@@ -1,0 +1,150 @@
+.section {
+  padding: 60px 0 100px;
+  background-color: #ffffff;
+  overflow-x: clip;
+}
+
+/* Barra de título: arranca en el borde izquierdo y se corta antes del derecho. */
+.banner {
+  width: 88%;
+  padding: 22px 40px;
+  background-color: #31566f;
+  color: #ffffff;
+  font-family: var(--font-poppins);
+  font-size: 2.4rem;
+  font-weight: 400;
+  text-align: right;
+  line-height: 1.1;
+}
+
+.grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px 20px;
+  max-width: 1200px;
+  margin: 70px auto 0;
+  padding: 0 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  aspect-ratio: 1;
+}
+
+.ring {
+  position: absolute;
+  inset: 3%;
+  border-radius: 50%;
+  /* Anillo: el hueco ocupa el 78% del diámetro. */
+  background: radial-gradient(circle closest-side, transparent 77.5%, #4a7694 78%);
+  transition: opacity 0.35s ease;
+}
+
+.ringHover {
+  background: radial-gradient(circle closest-side, transparent 77.5%, #7298ad 78%);
+  opacity: 0;
+}
+
+.application {
+  position: absolute;
+  inset: 3%;
+  width: 94%;
+  height: 94%;
+  border-radius: 50%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.bag {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 135%;
+  height: auto;
+  max-width: none;
+  translate: -50% -50%;
+  transition: translate 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
+    scale 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  pointer-events: none;
+}
+
+.name {
+  margin-top: 14px;
+  max-width: 200px;
+  font-family: var(--font-poppins);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+  color: #2b2b2b;
+  transition: font-size 0.3s ease, font-weight 0.3s ease;
+}
+
+/* Hover: círculo claro, la bolsa se desplaza a un lado y el nombre crece. */
+.card:hover .ring,
+.card:focus-visible .ring {
+  opacity: 0;
+}
+
+.card:hover .ringHover,
+.card:focus-visible .ringHover,
+.card:hover .application,
+.card:focus-visible .application {
+  opacity: 1;
+}
+
+.card:hover .bag,
+.card:focus-visible .bag {
+  translate: -72% -30%;
+  scale: 0.5;
+}
+
+.card:hover .name,
+.card:focus-visible .name {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .banner {
+    font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .banner {
+    width: 94%;
+    padding: 16px 20px;
+    font-size: 1.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring,
+  .application,
+  .bag,
+  .name {
+    transition: none;
+  }
+}

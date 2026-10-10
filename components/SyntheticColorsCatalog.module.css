@@ -1,0 +1,127 @@
+.section {
+  padding: 40px 0 100px;
+  background-color: #ffffff;
+  overflow-x: clip;
+}
+
+/* Barra de título: arranca en el borde izquierdo y se corta antes del derecho. */
+.banner {
+  width: 88%;
+  padding: 22px 40px;
+  background-color: #31566f;
+  color: #ffffff;
+  font-family: var(--font-poppins);
+  font-size: 2.4rem;
+  font-weight: 400;
+  text-align: right;
+  line-height: 1.2;
+}
+
+.strip {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-top: 70px;
+}
+
+.cover {
+  object-fit: cover;
+}
+
+.column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  aspect-ratio: 285 / 675;
+  padding-bottom: 3%;
+  background: url('/assets/productos/sinteticos/fondo.jpg') center / cover no-repeat;
+  border-left: 1px solid rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+  outline: none;
+  transition: opacity 0.35s ease;
+}
+
+.column:first-of-type {
+  border-left: none;
+}
+
+.dimmed {
+  opacity: 0;
+}
+
+.ribbon {
+  width: 100%;
+  height: auto;
+}
+
+.jar {
+  width: 68%;
+  height: auto;
+  transition: scale 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.column:hover .jar,
+.column:focus-visible .jar {
+  scale: 1.08;
+}
+
+.info {
+  max-width: 1000px;
+  margin: 60px auto 0;
+  padding: 0 20px;
+}
+
+.infoTitle {
+  margin-bottom: 14px;
+  font-family: var(--font-poppins);
+  font-size: 1.4rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #2b2b2b;
+}
+
+.infoText {
+  font-family: var(--font-poppins);
+  font-size: 1rem;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: #454545;
+}
+
+.rule {
+  width: 95vw;
+  height: 18px;
+  margin: 80px 0 0 calc(50% - 47.5vw);
+  background-color: #383838;
+}
+
+@media (max-width: 992px) {
+  .banner {
+    font-size: 1.8rem;
+  }
+
+  .strip {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .banner {
+    width: 94%;
+    padding: 16px 20px;
+    font-size: 1.2rem;
+  }
+
+  .strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .column,
+  .jar {
+    transition: none;
+  }
+}
