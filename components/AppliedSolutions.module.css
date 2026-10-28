@@ -29,10 +29,10 @@
   min-height: 440px;
 }
 
+/* Absoluto para no depender de una altura definida del padre (en columna, height: 100% se resuelve a 0). */
 .imageContainer {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
 }
 
 @keyframes fadeEffect {
@@ -159,6 +159,11 @@
 @media (max-width: 768px) {
   .layoutWrapper {
     flex-direction: column;
+  }
+  .carouselCol {
+    flex: none;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
   }
   .blueBar {
     display: none;
