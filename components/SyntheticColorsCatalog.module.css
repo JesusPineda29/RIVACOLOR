@@ -26,6 +26,12 @@
 
 .cover {
   object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.coverVisible {
+  opacity: 1;
 }
 
 .column {
@@ -35,7 +41,7 @@
   align-items: center;
   justify-content: space-between;
   aspect-ratio: 285 / 675;
-  padding-bottom: 3%;
+  padding-bottom: 0;
   background: url('/assets/productos/sinteticos/fondo.jpg') center / cover no-repeat;
   border-left: 1px solid rgba(255, 255, 255, 0.28);
   cursor: pointer;
@@ -57,8 +63,12 @@
 }
 
 .jar {
-  width: 68%;
+  /* El PNG tiene mucho margen transparente (el frasco ocupa ~56% del ancho);
+     al 112% de la columna el frasco visible queda en ~63%, como en la maqueta. */
+  width: 112%;
+  max-width: none;
   height: auto;
+  margin-bottom: -4%;
   transition: scale 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
@@ -67,10 +77,56 @@
   scale: 1.08;
 }
 
+/* Listón pegado al borde izquierdo, ficha al centro y una columna vacía para equilibrar. */
 .info {
-  max-width: 1000px;
-  margin: 60px auto 0;
-  padding: 0 20px;
+  display: grid;
+  grid-template-columns: minmax(0, 170px) minmax(0, 1000px) minmax(0, 170px);
+  justify-content: space-between;
+  column-gap: 24px;
+  margin-top: 40px;
+}
+
+.flag {
+  padding-top: 48px;
+}
+
+.flagImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: flagIn 0.4s ease;
+}
+
+@keyframes flagIn {
+  from {
+    translate: -100% 0;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+.infoBody {
+  min-height: 190px;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 16px;
+  font-family: var(--font-poppins);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #454545;
+}
+
+.facts dt {
+  font-weight: 600;
+  color: #2b2b2b;
+}
+
+.facts dd {
+  margin: 0;
 }
 
 .infoTitle {
@@ -82,19 +138,12 @@
   color: #2b2b2b;
 }
 
-.infoText {
-  font-family: var(--font-poppins);
-  font-size: 1rem;
-  line-height: 1.5;
-  text-transform: uppercase;
-  color: #454545;
-}
-
 .rule {
   width: 95vw;
   height: 18px;
   margin: 80px 0 0 calc(50% - 47.5vw);
-  background-color: #383838;
+  background-color: var(--accent, #383838);
+  transition: background-color 0.35s ease;
 }
 
 @media (max-width: 992px) {
@@ -117,11 +166,35 @@
   .strip {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .info {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
+
+  .flag {
+    display: none;
+  }
+
+  .facts {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .facts dd {
+    margin-bottom: 10px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .column,
-  .jar {
+  .jar,
+  .cover,
+  .rule {
     transition: none;
+  }
+
+  .flagImage {
+    animation: none;
   }
 }

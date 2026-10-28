@@ -95,10 +95,59 @@
 .panelText {
   margin-bottom: 1.4em;
   font-family: var(--font-poppins);
-  font-size: clamp(0.8rem, 1.05vw, 1.05rem);
+  font-size: clamp(0.9rem, 1.3vw, 1.25rem);
   font-weight: 300;
   line-height: 1.45;
   text-align: justify;
+}
+
+/* Ficha completa debajo del bloque de color. */
+.details {
+  max-width: 1100px;
+  margin: 50px auto 0;
+  padding: 0 20px;
+  font-family: var(--font-poppins);
+  color: #454545;
+}
+
+.detailsColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.detailsTitle {
+  margin-bottom: 14px;
+  padding-bottom: 6px;
+  border-bottom: 4px solid;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #2b2b2b;
+  transition: border-color 0.35s ease;
+}
+
+.detailsList {
+  padding-left: 1.2em;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.detailsList li + li {
+  margin-top: 4px;
+}
+
+.note {
+  margin-top: 30px;
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.note strong {
+  font-weight: 600;
+  color: #2b2b2b;
 }
 
 @media (max-width: 992px) {
@@ -151,13 +200,19 @@
   .panelText {
     font-size: 0.95rem;
   }
+
+  .detailsColumns {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .name,
   .photo,
   .photoImg,
-  .panel {
+  .panel,
+  .detailsTitle {
     transition: none;
   }
 }
