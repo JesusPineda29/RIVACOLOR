@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import { WHATSAPP_LABEL, WHATSAPP_URL } from './WhatsAppButton';
 import styles from './Footer.module.css';
 
 const emails = [
@@ -50,6 +52,9 @@ export default function Footer() {
                   {phone.label}
                 </a>
               ))}
+              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className={styles.contactLink}>
+                WhatsApp {WHATSAPP_LABEL}
+              </a>
             </div>
             
           </div>
@@ -81,8 +86,8 @@ export default function Footer() {
       <div className={styles.bottomFooter}>
         <div className={`container ${styles.bottomContainer}`}>
           <div className={styles.footerTextRow}>
-             <span className={styles.copyright}>® 2026 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam</span>
-             <span className={styles.loremText}>consectetuer adipiscing elit, sed diam</span>
+             <span className={styles.copyright}>® 2026 Rivacolor S.A. de C.V.</span>
+             <Link href="/aviso-de-privacidad" className={styles.privacyLink}>Aviso de privacidad</Link>
              
              <div className={styles.socialIcons}>
                <a href="https://www.linkedin.com/company/rivacolor-s-a-de-c-v/posts/?feedView=all" target="_blank" rel="noreferrer" className={styles.socialCircle}>

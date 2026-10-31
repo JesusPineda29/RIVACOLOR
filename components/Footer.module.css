@@ -147,6 +147,12 @@
 }
 
 /* Responsive adjustments */
+/* Mismo tono que el resto de la fila; el subrayado al pasar indica que es enlace. */
+.privacyLink:hover,
+.privacyLink:focus-visible {
+  text-decoration: underline;
+}
+
 @media (max-width: 1024px) {
   .contactColumns {
     gap: 40px;

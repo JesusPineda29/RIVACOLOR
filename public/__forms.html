@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!-- Netlify detecta los formularios en el HTML estático durante el deploy.
+     Este archivo declara los campos de components/QuoteForm.tsx; si se agrega o
+     renombra un campo allá, hay que reflejarlo aquí. -->
+<html lang="es">
+  <body>
+    <form name="cotizacion" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="cotizacion" />
+      <input name="bot-field" />
+      <input name="nombre" />
+      <input name="empresa" />
+      <input name="telefono" />
+      <input name="email" />
+      <input name="ubicacion" />
+      <input name="industria" />
+      <input name="categoria" />
+      <input name="producto" />
+      <input name="producto_otro" />
+      <input name="certificaciones" />
+      <textarea name="comentarios"></textarea>
+      <input name="acepta_privacidad" />
+    </form>
+  </body>
+</html>

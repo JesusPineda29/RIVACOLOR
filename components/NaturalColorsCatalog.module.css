@@ -1,4 +1,6 @@
 .section {
+  /* Deja libre el header fijo al llegar por ancla (#naturales). */
+  scroll-margin-top: 90px;
   padding: 40px 0 100px;
   background-color: #ffffff;
   overflow-x: clip;
@@ -16,10 +18,10 @@
   line-height: 1.2;
 }
 
-/* Proporciones del diseño: lista | foto | panel sobre 1440 x 587. */
+/* Lista | foto | barra de color, sobre 1440 x 587. */
 .layout {
   display: grid;
-  grid-template-columns: 30.8% 33.6% 35.6%;
+  grid-template-columns: 30.8% 1fr 10%;
   column-gap: 0;
   aspect-ratio: 1440 / 587;
   margin-top: 70px;
@@ -76,78 +78,8 @@
   opacity: 1;
 }
 
-.panel {
-  padding: 5% 6%;
-  color: #ffffff;
+.bar {
   transition: background-color 0.35s ease;
-}
-
-.panelTitle {
-  margin-bottom: 8%;
-  font-family: var(--font-poppins);
-  font-size: clamp(1.4rem, 3.4vw, 3.4rem);
-  font-weight: 400;
-  text-align: center;
-  text-transform: uppercase;
-  line-height: 1.1;
-}
-
-.panelText {
-  margin-bottom: 1.4em;
-  font-family: var(--font-poppins);
-  font-size: clamp(0.9rem, 1.3vw, 1.25rem);
-  font-weight: 300;
-  line-height: 1.45;
-  text-align: justify;
-}
-
-/* Ficha completa debajo del bloque de color. */
-.details {
-  max-width: 1100px;
-  margin: 50px auto 0;
-  padding: 0 20px;
-  font-family: var(--font-poppins);
-  color: #454545;
-}
-
-.detailsColumns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-}
-
-.detailsTitle {
-  margin-bottom: 14px;
-  padding-bottom: 6px;
-  border-bottom: 4px solid;
-  font-size: 1.2rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #2b2b2b;
-  transition: border-color 0.35s ease;
-}
-
-.detailsList {
-  padding-left: 1.2em;
-  font-size: 1rem;
-  font-weight: 300;
-  line-height: 1.6;
-}
-
-.detailsList li + li {
-  margin-top: 4px;
-}
-
-.note {
-  margin-top: 30px;
-  font-size: 0.95rem;
-  font-weight: 300;
-  line-height: 1.6;
-}
-
-.note strong {
-  font-weight: 600;
-  color: #2b2b2b;
 }
 
 @media (max-width: 992px) {
@@ -188,22 +120,8 @@
     aspect-ratio: 484 / 360;
   }
 
-  .panel {
-    padding: 28px 24px;
-  }
-
-  .panelTitle {
-    margin-bottom: 18px;
-    font-size: 2rem;
-  }
-
-  .panelText {
-    font-size: 0.95rem;
-  }
-
-  .detailsColumns {
-    grid-template-columns: 1fr;
-    gap: 28px;
+  .bar {
+    height: 18px;
   }
 }
 
@@ -211,8 +129,12 @@
   .name,
   .photo,
   .photoImg,
-  .panel,
-  .detailsTitle {
+  .bar {
     transition: none;
   }
+}
+
+.quote {
+  margin-top: 36px;
+  text-align: center;
 }

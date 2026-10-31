@@ -1,7 +1,8 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './Industries.module.css';
 
-const industriesData = [
+export const industriesData = [
   {
     id: 'alimentaria',
     title: 'INDUSTRIA ALIMENTARIA',
@@ -48,7 +49,7 @@ const industriesData = [
 
 export default function Industries() {
   return (
-    <section className={styles.industriesSection}>
+    <section id="industrias" className={styles.industriesSection}>
       <h2 className={styles.mainTitle}>
         Industrias que <strong>Transformamos</strong>
       </h2>
@@ -68,10 +69,10 @@ export default function Industries() {
               <hr className={styles.separator} />
               <p className={styles.cardText}>{item.text}</p>
               
-              <a href="#" className={styles.infoLink}>
+              <Link href={`/cotizar?industria=${item.id}`} className={styles.infoLink}>
                 Información
                 <Image src="/assets/bloque3/ICONO_INFORMACION.png" alt="Flecha" width={22} height={22} className={styles.infoIcon} />
-              </a>
+              </Link>
             </div>
           </div>
         ))}

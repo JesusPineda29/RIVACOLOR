@@ -11,7 +11,7 @@ const navItems = [
   { href: '/productos', label: 'Productos' },
   { href: '/industrias', label: 'Industrias' },
   { href: '/certificaciones', label: 'Certificaciones' },
-  { href: '#contacto', label: 'Cotizaciones' },
+  { href: '/cotizar', label: 'Cotizaciones' },
   { href: '#contacto', label: 'Contacto' },
 ];
 

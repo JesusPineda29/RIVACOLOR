@@ -1,6 +1,10 @@
 import Image from 'next/image';
 import styles from './Location.module.css';
 
+const DIRECTIONS_URL =
+  'https://www.google.com/maps/dir/?api=1&destination=' +
+  encodeURIComponent('Rivacolor, Manuel Acuña No. 6, Jacarandas, Iztapalapa, 09280 Ciudad de México, CDMX');
+
 export default function Location() {
   return (
     <section className={styles.locationSection}>
@@ -10,6 +14,15 @@ export default function Location() {
           <p className={styles.address}>
             Manuel Acuña No. 6 Col. Jacarandas Iztapalapa, CDMX C.P. 09280, México
           </p>
+          {/* Abre Google Maps con la ruta trazada desde la ubicación del usuario. */}
+          <a
+            href={DIRECTIONS_URL}
+            target="_blank"
+            rel="noreferrer"
+            className={`quote-button ${styles.directions}`}
+          >
+            Cómo llegar
+          </a>
         </div>
         <div className={styles.pinContainer}>
           <Image 

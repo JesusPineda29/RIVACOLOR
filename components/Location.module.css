@@ -31,6 +31,10 @@
   color: #545454;
 }
 
+.directions {
+  margin-top: 18px;
+}
+
 .pinContainer {
   margin-left: 20px;
   display: flex;

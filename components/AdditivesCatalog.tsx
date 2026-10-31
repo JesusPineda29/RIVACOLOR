@@ -2,38 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { additives, type Additive } from '@/lib/products';
 import styles from './AdditivesCatalog.module.css';
 
 const BASE = '/assets/productos/aditivos';
-
-type Additive = {
-  slug: string;
-  name: string;
-  /** Archivo de la foto del producto, si no coincide con el slug. */
-  image?: string;
-};
-
-const additives: Additive[] = [
-  { slug: 'acido-citrico-anhidrico', name: 'Ácido cítrico anhídrico' },
-  { slug: 'acido-fumarico', name: 'Ácido fumárico' },
-  { slug: 'acido-sorbico', name: 'Ácido sórbico' },
-  { slug: 'acido-lactico', name: 'Ácido láctico' },
-  { slug: 'acido-malico', name: 'Ácido málico' },
-  { slug: 'almidon-de-maiz', name: 'Almidón de maíz' },
-  { slug: 'benzoato-de-sodio', name: 'Benzoato de sodio' },
-  { slug: 'bicarbonato-de-amonio', name: 'Bicarbonato de amonio' },
-  { slug: 'bicarbonato-de-sodio', name: 'Bicarbonato de sodio' },
-  { slug: 'citrato-de-sodio', name: 'Citrato de sodio' },
-  { slug: 'cloruro-de-amonio', name: 'Cloruro de amonio' },
-  { slug: 'dioxido-de-titanio', name: 'Dióxido de titanio' },
-  { slug: 'fosfato-de-aluminio-y-sodio', name: 'Fosfato de aluminio y sodio' },
-  { slug: 'glutamato-monosodico', name: 'Glutamato monosódico' },
-  { slug: 'goma-xanthana', name: 'Goma xanthana' },
-  { slug: 'lactato-de-calcio', name: 'Lactato de calcio' },
-  { slug: 'lecitina-de-soya', name: 'Lecitina de soya', image: 'lecitina-de-soya-bidon.png' },
-  { slug: 'maltodextrina', name: 'Maltodextrina' },
-  { slug: 'sorbato-de-potasio', name: 'Sorbato de potasio' },
-];
 
 export default function AdditivesCatalog() {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -46,7 +19,7 @@ export default function AdditivesCatalog() {
   const close = () => dialogRef.current?.close();
 
   return (
-    <section className={styles.section}>
+    <section id="aditivos" className={styles.section}>
       <h2 className={styles.banner}>
         <span>ADITIVOS E INGREDIENTES</span>
       </h2>
@@ -129,6 +102,12 @@ export default function AdditivesCatalog() {
                   fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
                   culpa qui officia deserunt mollit anim id est laborum.
                 </p>
+                <Link
+                  href={`/cotizar?categoria=aditivos&producto=${selected.slug}`}
+                  className="quote-button"
+                >
+                  Cotizar
+                </Link>
               </div>
               <div className={styles.modalMedia}>
                 <Image

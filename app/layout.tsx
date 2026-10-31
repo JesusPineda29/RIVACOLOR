@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export const metadata: Metadata = {
   title: "Rivacolor - Descubre tu manera",
@@ -17,7 +18,10 @@ export default function RootLayout({
   // animaciones de useInView antes de llegar arriba.
   return (
     <html lang="es" data-scroll-behavior="smooth">
-      <body>{children}</body>
+      <body>
+        {children}
+        <WhatsAppButton />
+      </body>
     </html>
   );
 }

@@ -1,4 +1,6 @@
 .section {
+  /* Deja libre el header fijo al llegar por ancla (#aditivos). */
+  scroll-margin-top: 90px;
   padding: 60px 0 100px;
   background-color: #ffffff;
   overflow-x: clip;
@@ -275,4 +277,8 @@
   .modal[open] {
     animation: none;
   }
+}
+
+.modalText > a {
+  align-self: flex-start;
 }
