@@ -1,4 +1,6 @@
 .section {
+  /* Deja libre el header fijo al llegar por ancla (#aplicaciones). */
+  scroll-margin-top: 90px;
   padding: 80px 20px;
   background-color: #ffffff;
 }

@@ -77,7 +77,7 @@ export default function Products() {
   const { ref: gridRef, isInView } = useInView<HTMLDivElement>();
 
   return (
-    <section className={styles.section}>
+    <section id="productos" className={styles.section}>
       <h2 className={styles.mainTitle}>
         Encuentra el <strong>Producto</strong> adecuado.
       </h2>

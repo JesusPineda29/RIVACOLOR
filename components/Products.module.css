@@ -1,4 +1,6 @@
 .section {
+  /* Deja libre el header fijo al llegar por ancla (#productos). */
+  scroll-margin-top: 90px;
   padding: 100px 0;
   background-color: #ffffff;
 }

@@ -45,7 +45,7 @@ export default function Solutions() {
   }, []);
 
   return (
-    <section className={styles.solutionsSection}>
+    <section id="soluciones" className={styles.solutionsSection}>
       <h2 className={styles.topTitle}>
         <strong>Soluciones</strong> diseñadas para <strong>destacar.</strong>
       </h2>

@@ -20,7 +20,7 @@ export default function Functionalities() {
   const [activeIndex, setActiveIndex] = useState<number | null>(5); // 5 corresponds to 'MEJORAR TEXTURA' as initial active
 
   return (
-    <section className={styles.section}>
+    <section id="usos" className={styles.section}>
       <h2 className={styles.mainTitle}>
         Funcionalidad que impulsa tus <strong>Productos.</strong>
       </h2>

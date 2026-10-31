@@ -25,7 +25,7 @@ export default function AppliedSolutions() {
   }, []);
 
   return (
-    <section className={styles.section}>
+    <section id="aplicaciones" className={styles.section}>
       <h2 className={styles.mainTitle}>
         Soluciones <strong>aplicadas a productos</strong> reales.
       </h2>

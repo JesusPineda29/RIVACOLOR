@@ -6,13 +6,13 @@ import Link from 'next/link';
 import { useInView } from './useInView';
 import styles from './Features.module.css';
 
-/* `href`: a dónde lleva cada ícono; los que no lo tienen aún no tienen destino definido. */
-const features: { id: string; label: string; icon: string; href?: string }[] = [
+/* Cada ícono baja a su sección del inicio, que siguen el mismo orden. */
+const features = [
   { id: 'industria', label: 'Por Industria', icon: '/assets/IC_POR_INDUSTRIA.png', href: '/#industrias' },
-  { id: 'solucion', label: 'Por Solución', icon: '/assets/IC_POR_SOLUCION.png' },
-  { id: 'aplicacion', label: 'Por Aplicación', icon: '/assets/IC_POR_APLICACION.png' },
-  { id: 'uso', label: 'Por Uso', icon: '/assets/IC_POR_USO.png' },
-  { id: 'producto', label: 'Por Producto', icon: '/assets/IC_POR_PRODUCTO.png' },
+  { id: 'solucion', label: 'Por Solución', icon: '/assets/IC_POR_SOLUCION.png', href: '/#soluciones' },
+  { id: 'aplicacion', label: 'Por Aplicación', icon: '/assets/IC_POR_APLICACION.png', href: '/#aplicaciones' },
+  { id: 'uso', label: 'Por Uso', icon: '/assets/IC_POR_USO.png', href: '/#usos' },
+  { id: 'producto', label: 'Por Producto', icon: '/assets/IC_POR_PRODUCTO.png', href: '/#productos' },
 ];
 
 export default function Features() {
@@ -29,8 +29,14 @@ export default function Features() {
         <div ref={gridRef} className={`${styles.grid} ${isInView ? styles.gridVisible : ''}`}>
           {features.map((feature) => {
             const isSelected = selectedId === feature.id;
-            const content = (
-              <>
+            return (
+              <Link
+                key={feature.id}
+                href={feature.href}
+                className={`${styles.card} ${isSelected ? styles.selected : ''}`}
+                onMouseEnter={() => setSelectedId(feature.id)}
+                onMouseLeave={() => setSelectedId(null)}
+              >
                 <div className={styles.iconContainer}>
                   {/* Assuming the original images are dark gray (#545454).
                       For a robust solution we'd use SVGs with currentColor, 
@@ -40,7 +46,7 @@ export default function Features() {
                   <div className={styles.iconWrapper}>
                     <Image
                       src={feature.icon}
-                      alt={feature.label}
+                      alt=""
                       width={64}
                       height={64}
                       className={styles.iconImage}
@@ -48,27 +54,7 @@ export default function Features() {
                   </div>
                 </div>
                 <h3 className={styles.cardTitle}>{feature.label}</h3>
-              </>
-            );
-            return feature.href ? (
-              <Link
-                key={feature.id}
-                href={feature.href}
-                className={`${styles.card} ${isSelected ? styles.selected : ''}`}
-                onMouseEnter={() => setSelectedId(feature.id)}
-                onMouseLeave={() => setSelectedId(null)}
-              >
-                {content}
               </Link>
-            ) : (
-              <div
-                key={feature.id}
-                className={`${styles.card} ${isSelected ? styles.selected : ''}`}
-                onMouseEnter={() => setSelectedId(feature.id)}
-                onMouseLeave={() => setSelectedId(null)}
-              >
-                {content}
-              </div>
             );
           })}
         </div>

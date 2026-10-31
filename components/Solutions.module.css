@@ -1,4 +1,6 @@
 .solutionsSection {
+  /* Deja libre el header fijo al llegar por ancla (#soluciones). */
+  scroll-margin-top: 90px;
   background-color: #ffffff;
   padding: 60px 0;
   text-align: center;
