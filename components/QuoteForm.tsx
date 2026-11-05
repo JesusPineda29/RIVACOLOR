@@ -2,15 +2,14 @@
 
 import { useState, type FormEvent } from 'react';
 import Link from 'next/link';
-import type { QuoteCategory, QuoteOption } from '@/lib/quote';
+import {
+  quoteCertifications,
+  quoteUrgencies,
+  quoteVolumes,
+  type QuoteCategory,
+  type QuoteOption,
+} from '@/lib/quote';
 import styles from './QuoteForm.module.css';
-
-const certifications = [
-  'Certificado Kosher',
-  'Certificado Halal',
-  'Certificado de Análisis (CoA)',
-  'Grado alimenticio / NOM-251 / HACCP',
-];
 
 /** Acepta `amarillo_5` además de `amarillo-5`, por si el enlace viene con guion bajo. */
 const normalize = (value?: string) => value?.trim().toLowerCase().replace(/_/g, '-') ?? '';
@@ -43,15 +42,36 @@ export default function QuoteForm({
 }: QuoteFormProps) {
   const findPreset = (params: { initialCategory?: string; initialProduct?: string; initialIndustry?: string }) => {
     const c = categories.find((item) => item.slug === normalize(params.initialCategory));
-    const p = c?.products?.find((item) => item.slug === normalize(params.initialProduct));
+    const slug = normalize(params.initialProduct);
     const i = industries.find((item) => item.slug === normalize(params.initialIndustry));
-    return { category: c?.slug ?? '', product: p?.slug ?? '', industry: i?.slug ?? '' };
+    const preset = { category: c?.slug ?? '', product: '', otherText: '', comments: '', industry: i?.slug ?? '' };
+
+    if (c && slug) {
+      const match = c.products?.find((item) => item.slug === slug || item.aliases?.includes(slug));
+      // Producto de la página que no está en la lista de la guía: se anota su nombre en
+      // "Otro" o, si la categoría no tiene lista, en los comentarios.
+      const fromPage = c.catalog?.find((item) => item.slug === slug)?.name;
+      if (match) {
+        preset.product = match.slug;
+      } else if (fromPage) {
+        const otherOption = c.products?.find((item) => item.isOther);
+        if (otherOption) {
+          preset.product = otherOption.slug;
+          preset.otherText = fromPage;
+        } else if (!c.products) {
+          preset.comments = `Producto de interés: ${fromPage}`;
+        }
+      }
+    }
+    return preset;
   };
 
   const params = { initialCategory, initialProduct, initialIndustry };
   const [initialPreset] = useState(() => findPreset(params));
   const [categorySlug, setCategorySlug] = useState(initialPreset.category);
   const [productSlug, setProductSlug] = useState(initialPreset.product);
+  const [otherText, setOtherText] = useState(initialPreset.otherText);
+  const [comments, setComments] = useState(initialPreset.comments);
   const [industrySlug, setIndustrySlug] = useState(initialPreset.industry);
   const [presetParams, setPresetParams] = useState(params);
 
@@ -67,15 +87,17 @@ export default function QuoteForm({
     if (preset.category) {
       setCategorySlug(preset.category);
       setProductSlug(preset.product);
+      setOtherText(preset.otherText);
+      if (preset.comments) setComments(preset.comments);
     }
     if (preset.industry) setIndustrySlug(preset.industry);
   }
   const [phone, setPhone] = useState('');
+  const [specialNeed, setSpecialNeed] = useState<'' | 'no' | 'si'>('');
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
   const category = categories.find((c) => c.slug === categorySlug);
   const product = category?.products?.find((p) => p.slug === productSlug);
-  const needsComments = Boolean(category && !category.products);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -93,9 +115,13 @@ export default function QuoteForm({
       industria: industries.find((i) => i.slug === industrySlug)?.name ?? '',
       categoria: category?.name ?? '',
       producto: product?.name ?? '',
-      producto_otro: String(data.get('producto_otro') ?? ''),
+      producto_otro: product?.isOther ? otherText : '',
+      volumen: String(data.get('volumen')),
+      urgencia: String(data.get('urgencia')),
       certificaciones: data.getAll('certificaciones').join(', '),
-      comentarios: String(data.get('comentarios') ?? ''),
+      necesidad_especial: specialNeed === 'si' ? 'Sí' : 'No',
+      necesidad_especial_detalle: String(data.get('necesidad_especial_detalle') ?? ''),
+      comentarios: comments,
       acepta_privacidad: data.get('acepta_privacidad') ? 'Sí, aviso de privacidad del 30/10/2026' : 'No',
     });
 
@@ -178,7 +204,7 @@ export default function QuoteForm({
       </fieldset>
 
       <fieldset className={styles.block}>
-        <legend className={styles.legend}>Producto</legend>
+        <legend className={styles.legend}>Selección de producto y necesidad</legend>
         <div className={styles.grid}>
           <label className={styles.field}>
             <span>Línea de producto *</span>
@@ -204,7 +230,7 @@ export default function QuoteForm({
 
           {category?.products && (
             <label className={styles.field}>
-              <span>{category.name} *</span>
+              <span>{category.productLabel ?? category.name} *</span>
               <select
                 name="producto"
                 required
@@ -226,27 +252,104 @@ export default function QuoteForm({
           {product?.isOther && (
             <label className={`${styles.field} ${styles.wide}`}>
               <span>¿Qué producto buscas? *</span>
-              <input name="producto_otro" required maxLength={100} />
+              <input
+                name="producto_otro"
+                required
+                maxLength={100}
+                value={otherText}
+                onChange={(e) => setOtherText(e.target.value)}
+              />
             </label>
           )}
         </div>
       </fieldset>
 
       <fieldset className={styles.block}>
-        <legend className={styles.legend}>Requerimientos</legend>
-        <p className={styles.hint}>Certificación o calidad requerida (opcional)</p>
+        <legend className={styles.legend}>Necesidad y perfil comercial</legend>
+        <div className={styles.grid}>
+          <label className={styles.field}>
+            <span>Volumen o cantidad estimada *</span>
+            <select name="volumen" required defaultValue="">
+              <option value="" disabled>
+                Selecciona una opción
+              </option>
+              {quoteVolumes.map((v) => (
+                <option key={v} value={v}>
+                  {v}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className={styles.field}>
+            <span>Urgencia / Tiempo de compra *</span>
+            <select name="urgencia" required defaultValue="">
+              <option value="" disabled>
+                Selecciona una opción
+              </option>
+              {quoteUrgencies.map((u) => (
+                <option key={u} value={u}>
+                  {u}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        <p className={styles.hint}>Requerimiento de certificación / calidad (opcional)</p>
         <div className={styles.checks}>
-          {certifications.map((c) => (
+          {quoteCertifications.map((c) => (
             <label key={c} className={styles.check}>
               <input type="checkbox" name="certificaciones" value={c} />
               <span>{c}</span>
             </label>
           ))}
         </div>
+
+        <div role="radiogroup" aria-labelledby="special-need-label" aria-required="true">
+          <p id="special-need-label" className={styles.hint}>
+            ¿Tiene alguna necesidad o requerimiento especial que no se encuentre en la lista? *
+          </p>
+          <div className={styles.radios}>
+            <label className={styles.check}>
+              <input
+                type="radio"
+                name="necesidad_especial"
+                value="no"
+                required
+                checked={specialNeed === 'no'}
+                onChange={() => setSpecialNeed('no')}
+              />
+              <span>No</span>
+            </label>
+            <label className={styles.check}>
+              <input
+                type="radio"
+                name="necesidad_especial"
+                value="si"
+                checked={specialNeed === 'si'}
+                onChange={() => setSpecialNeed('si')}
+              />
+              <span>Sí</span>
+            </label>
+          </div>
+        </div>
+
+        {specialNeed === 'si' && (
+          <label className={styles.field}>
+            <span>Describe tu necesidad o requerimiento especial *</span>
+            <input name="necesidad_especial_detalle" required maxLength={100} />
+          </label>
+        )}
+
         <label className={styles.field}>
-          <span>Comentarios, especificaciones o necesidades especiales{needsComments && ' *'}</span>
-          {/* En una consulta general no hay producto, así que el comentario es lo único que la describe. */}
-          <textarea name="comentarios" rows={5} maxLength={300} required={needsComments} />
+          <span>Comentarios adicionales / Especificaciones</span>
+          <textarea
+            name="comentarios"
+            rows={5}
+            maxLength={300}
+            value={comments}
+            onChange={(e) => setComments(e.target.value)}
+          />
         </label>
       </fieldset>
 

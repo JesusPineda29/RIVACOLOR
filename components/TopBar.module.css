@@ -58,19 +58,9 @@
   opacity: 0.5;
 }
 
+/* En móvil se oculta la barra superior; teléfono, correo y redes siguen en el pie de página. */
 @media (max-width: 768px) {
-  .topBarInner {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-
-@media (max-width: 576px) {
-  .contactInfo {
-    flex-direction: column;
-    gap: 5px;
-  }
-  .separator {
+  .topBar {
     display: none;
   }
 }

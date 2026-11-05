@@ -149,8 +149,37 @@
 }
 
 @media (max-width: 992px) {
+  /* Inicio a la izquierda, logo al centro y hamburguesa a la derecha;
+     el menú es fijo y no ocupa lugar en la barra. */
+  .headerInner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  .homeIcon {
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  .logo {
+    grid-column: 2;
+    grid-row: 1;
+    justify-content: center;
+  }
+
   .hamburger {
     display: flex;
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    width: 2.25rem;
+  }
+
+  /* Rayas más gruesas en móvil. */
+  .bar {
+    width: 2.25rem;
+    height: 6px;
+    border-radius: 6px;
   }
 
   .nav {

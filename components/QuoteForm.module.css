@@ -88,6 +88,12 @@
   cursor: pointer;
 }
 
+.radios {
+  display: flex;
+  gap: 32px;
+  margin-top: 10px;
+}
+
 .check input {
   flex-shrink: 0;
   width: 18px;
