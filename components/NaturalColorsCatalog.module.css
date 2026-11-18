@@ -79,7 +79,25 @@
 }
 
 .bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   transition: background-color 0.35s ease;
+}
+
+/* Letras una debajo de otra (A / N / N / A / T / O). */
+.barName {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: var(--font-poppins);
+  font-size: clamp(0.9rem, 2.4vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
 
 @media (max-width: 992px) {
@@ -122,6 +140,11 @@
 
   .bar {
     height: 18px;
+  }
+
+  /* En celular la barra es horizontal; su nombre se resuelve con el pop-up de la minuta. */
+  .barName {
+    display: none;
   }
 }
 

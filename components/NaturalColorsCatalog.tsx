@@ -49,8 +49,10 @@ export default function NaturalColorsCatalog() {
           ))}
         </div>
 
-        {/* Barra con el color del colorante activo (guía de hexadecimales). */}
-        <div className={styles.bar} style={{ backgroundColor: active.color }} aria-hidden="true" />
+        {/* Barra con el color del colorante activo (guía de hexadecimales) y su nombre en vertical. */}
+        <div className={styles.bar} style={{ backgroundColor: active.color }} aria-hidden="true">
+          <span className={styles.barName}>{active.name}</span>
+        </div>
       </div>
 
       <div className={styles.quote}>

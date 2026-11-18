@@ -6,9 +6,9 @@ import Link from 'next/link';
 import { useInView } from './useInView';
 import styles from './Features.module.css';
 
-/* Cada ícono baja a su sección del inicio, que siguen el mismo orden. */
+/* Cada ícono baja a su sección del inicio, salvo Industria, que tiene su propia página. */
 const features = [
-  { id: 'industria', label: 'Por Industria', icon: '/assets/IC_POR_INDUSTRIA.png', href: '/#industrias' },
+  { id: 'industria', label: 'Por Industria', icon: '/assets/IC_POR_INDUSTRIA.png', href: '/industrias' },
   { id: 'solucion', label: 'Por Solución', icon: '/assets/IC_POR_SOLUCION.png', href: '/#soluciones' },
   { id: 'aplicacion', label: 'Por Aplicación', icon: '/assets/IC_POR_APLICACION.png', href: '/#aplicaciones' },
   { id: 'uso', label: 'Por Uso', icon: '/assets/IC_POR_USO.png', href: '/#usos' },

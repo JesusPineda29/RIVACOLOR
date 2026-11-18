@@ -1,0 +1,177 @@
+/* Medidas tomadas de VIEW_INDUSTRIAS.jpg (escalado a 1200 de ancho): 1px = 1/12 vw. */
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.list {
+  padding: 5vw 0 4vw;
+  overflow-x: clip;
+}
+
+.section {
+  /* Deja libre el header fijo al llegar por ancla (/industrias#id). */
+  scroll-margin-top: 90px;
+}
+
+.separator {
+  width: 80%;
+  margin: 2.2vw auto;
+  border: none;
+  border-top: 1px solid #b5b5b5;
+}
+
+/* Foto grande | hueco | dos fotos chicas + texto. */
+.block {
+  position: relative;
+  display: grid;
+  grid-template-columns: 575fr 51fr 574fr;
+  aspect-ratio: 1200 / 344;
+}
+
+.big {
+  position: relative;
+  grid-column: 1;
+  grid-row: 1;
+  overflow: hidden;
+}
+
+.side {
+  grid-column: 3;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 188fr 128fr;
+  gap: 2.3vw;
+}
+
+.reverse .big {
+  grid-column: 3;
+}
+
+.reverse .side {
+  grid-column: 1;
+}
+
+.small {
+  position: relative;
+  overflow: hidden;
+}
+
+.img {
+  object-fit: cover;
+}
+
+/* Franja translúcida con el nombre de la industria. */
+.title {
+  position: absolute;
+  bottom: 1.3vw;
+  left: 0;
+  padding: 0.4vw 2vw 0.4vw 5.8vw;
+  background-color: rgba(52, 72, 92, 0.72);
+  color: #ffffff;
+  font-family: var(--font-poppins);
+  font-size: 3.6vw;
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.reverse .title {
+  left: auto;
+  right: 0.3vw;
+  padding: 0.4vw 1.8vw;
+}
+
+.text {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0 5.8vw;
+  background-color: #164869;
+  color: #ffffff;
+  font-family: var(--font-poppins);
+  font-size: 1.45vw;
+  line-height: 1.35;
+  text-align: justify;
+}
+
+/* Ícono (el SVG ya trae su círculo), al centro entre la foto grande y las chicas.
+   El fondo blanco evita que se vea la foto a través del ícono. */
+.icon {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  z-index: 2;
+  width: 15vw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: #ffffff;
+  transform: translate(-50%, -50%);
+}
+
+.iconImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .list {
+    padding: 24px 0 32px;
+  }
+
+  .separator {
+    margin: 28px auto;
+  }
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: auto;
+  }
+
+  .big {
+    aspect-ratio: 4 / 3;
+  }
+
+  .title,
+  .reverse .title {
+    bottom: 14px;
+    left: 0;
+    right: auto;
+    padding: 4px 16px;
+    font-size: 1.5rem;
+  }
+
+  .icon {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100px;
+    /* A la derecha para no tapar el nombre, que está abajo a la izquierda. */
+    margin: -50px 20px 12px auto;
+    transform: none;
+  }
+
+  .side {
+    grid-template-rows: auto auto;
+    gap: 8px;
+    padding: 0 16px;
+  }
+
+  .small {
+    aspect-ratio: 272 / 188;
+  }
+
+  .text {
+    padding: 18px 20px;
+    font-size: 0.95rem;
+  }
+}

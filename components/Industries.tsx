@@ -57,18 +57,23 @@ export default function Industries() {
       <div className={styles.gridWrapper}>
         {industriesData.map((item) => (
           <div key={item.id} className={styles.card}>
-            <div className={styles.imageBox}>
-              <div className={styles.topIconWrapper}>
-                <Image src={item.icon} alt={`${item.title} icon`} width={150} height={110} className={styles.topIconImg} />
+            {/* Imagen, título y descripción llevan a la página de Industrias. */}
+            <Link href={`/industrias#${item.id}`} className={styles.cardLink}>
+              <div className={styles.imageBox}>
+                <div className={styles.topIconWrapper}>
+                  <Image src={item.icon} alt={`${item.title} icon`} width={150} height={110} className={styles.topIconImg} />
+                </div>
+                <Image src={item.photo} alt={item.title} fill sizes="(max-width: 768px) 100vw, 33vw" className={styles.photo} />
               </div>
-              <Image src={item.photo} alt={item.title} fill sizes="(max-width: 768px) 100vw, 33vw" className={styles.photo} />
-            </div>
-            
-            <div className={styles.contentBox}>
-              <h3 className={styles.cardTitle}>{item.title}</h3>
-              <hr className={styles.separator} />
-              <p className={styles.cardText}>{item.text}</p>
-              
+
+              <div className={styles.contentBox}>
+                <h3 className={styles.cardTitle}>{item.title}</h3>
+                <hr className={styles.separator} />
+                <p className={styles.cardText}>{item.text}</p>
+              </div>
+            </Link>
+
+            <div className={styles.infoBox}>
               <Link href={`/cotizar?industria=${item.id}`} className={styles.infoLink}>
                 Información
                 <Image src="/assets/bloque3/ICONO_INFORMACION.png" alt="Flecha" width={22} height={22} className={styles.infoIcon} />

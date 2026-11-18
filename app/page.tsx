@@ -10,6 +10,7 @@ import Products from '@/components/Products';
 import Location from '@/components/Location';
 import Footer from '@/components/Footer';
 import Reveal from '@/components/Reveal';
+import BackToTop from '@/components/BackToTop';
 
 export default function Home() {
   return (
@@ -39,6 +40,7 @@ export default function Home() {
         <Location />
       </Reveal>
       <Footer />
+      <BackToTop />
     </main>
   );
 }
