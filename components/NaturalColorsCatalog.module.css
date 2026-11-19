@@ -133,18 +133,92 @@
     font-size: 1.4rem;
   }
 
-  .photo {
-    margin: 24px 0 0;
-    aspect-ratio: 484 / 360;
-  }
-
-  .bar {
-    height: 18px;
-  }
-
-  /* En celular la barra es horizontal; su nombre se resuelve con el pop-up de la minuta. */
-  .barName {
+  /* En celular la foto, la barra y el botón viven en el modal. */
+  .photo,
+  .bar,
+  .quote {
     display: none;
+  }
+}
+
+.modal {
+  width: min(480px, 92vw);
+  max-width: none;
+  max-height: 90vh;
+  margin: auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+  overflow: visible;
+}
+
+.modal::backdrop {
+  background-color: rgba(28, 49, 64, 0.75);
+}
+
+.modal[open] {
+  animation: modalIn 0.3s ease;
+}
+
+.modalBody {
+  position: relative;
+  background-color: #ffffff;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.modalClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.modalPhoto {
+  position: relative;
+  aspect-ratio: 484 / 360;
+}
+
+.modalImg {
+  object-fit: cover;
+}
+
+/* Barra ancha con el nombre, como la barra vertical de escritorio. */
+.modalBar {
+  padding: 12px 16px;
+  font-family: var(--font-poppins);
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+.modalQuote {
+  padding: 20px 16px 24px;
+  text-align: center;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -154,6 +228,10 @@
   .photoImg,
   .bar {
     transition: none;
+  }
+
+  .modal[open] {
+    animation: none;
   }
 }
 

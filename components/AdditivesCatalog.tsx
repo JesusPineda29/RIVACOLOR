@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { additives, type Additive } from '@/lib/products';
+import { additives, industryIcons, type Additive } from '@/lib/products';
 import styles from './AdditivesCatalog.module.css';
 
 const BASE = '/assets/productos/aditivos';
@@ -66,7 +66,7 @@ export default function AdditivesCatalog() {
         ))}
       </ul>
 
-      {/* Modal con la segunda foto de aplicación; se cierra con Esc, el botón o clic en el fondo. */}
+      {/* Modal con la ficha del producto (VIEW_POPUP_WINDOW); se cierra con Esc, el botón o clic en el fondo. */}
       <dialog
         ref={dialogRef}
         className={styles.modal}
@@ -86,37 +86,61 @@ export default function AdditivesCatalog() {
                 onClick={close}
                 aria-label="Cerrar"
               >
-                ×
+                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                  <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" />
+                </svg>
               </button>
             </header>
+
             <div className={styles.modalContent}>
               <div className={styles.modalText}>
-                {/* Texto provisional hasta tener la descripción de cada producto. */}
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-                <p>
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                  fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+                <h4>¿Qué es?</h4>
+                {selected.whatIs.map((p) => (
+                  <p key={p}>{p}</p>
+                ))}
+
+                <h4>¿Para qué sirve?</h4>
+                {selected.uses.map((p) => (
+                  <p key={p}>{p}</p>
+                ))}
+
+                <h4>Se utiliza en varias industrias</h4>
+                <ul className={styles.modalIndustries}>
+                  {selected.industries.map((id) => (
+                    <li key={id}>
+                      <Image src={industryIcons[id].icon} alt="" width={44} height={44} />
+                      <span>{industryIcons[id].label}</span>
+                    </li>
+                  ))}
+                </ul>
+
                 <Link
                   href={`/cotizar?categoria=aditivos&producto=${selected.slug}`}
-                  className="quote-button"
+                  className={styles.modalContact}
                 >
-                  Cotizar
+                  <span>Conecta con nuestro equipo de ventas para obtener información personalizada</span>
+                  <strong>
+                    <svg viewBox="0 0 12 20" width="12" height="20" aria-hidden="true">
+                      <path d="M2 2l8 8-8 8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    Contactar
+                  </strong>
                 </Link>
               </div>
-              <div className={styles.modalMedia}>
-                <Image
-                  src={`${BASE}/detalle/${selected.slug}.jpg`}
-                  alt={selected.name}
-                  fill
-                  sizes="(max-width: 768px) 92vw, 480px"
-                  className={styles.modalImage}
-                />
+
+              {/* Una foto grande y tres chicas: popup/<slug>-1..4.jpg. */}
+              <div className={styles.modalGallery}>
+                {[1, 2, 3, 4].map((n) => (
+                  <div key={n} className={n === 1 ? styles.galleryBig : styles.gallerySmall}>
+                    <Image
+                      src={`${BASE}/popup/${selected.slug}-${n}.jpg`}
+                      alt=""
+                      fill
+                      sizes={n === 1 ? '(max-width: 768px) 92vw, 470px' : '(max-width: 768px) 31vw, 160px'}
+                      className={styles.modalImage}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </div>

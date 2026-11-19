@@ -28,14 +28,10 @@ function useIsMobile() {
 function QuoteLinks({ color }: { color: SyntheticColor }) {
   return (
     <div className={styles.quoteLinks}>
+      {/* Un solo botón (minuta 11/11); el tipo, tono o laca, se elige en el formulario. */}
       <Link href={`/cotizar?categoria=sinteticos&producto=${color.slug}`} className="quote-button">
-        Pregunta por el tono correcto
+        Cotizar tono o laca
       </Link>
-      {color.presentations.includes('Laca') && (
-        <Link href={`/cotizar?categoria=lacas&producto=${color.slug}`} className="quote-button">
-          Cotizar laca
-        </Link>
-      )}
     </div>
   );
 }
