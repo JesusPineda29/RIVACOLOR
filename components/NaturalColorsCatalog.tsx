@@ -49,7 +49,7 @@ export default function NaturalColorsCatalog() {
           {naturalColors.map((item) => (
             <Image
               key={item.slug}
-              src={`${BASE}/${item.slug}.jpg`}
+              src={`${BASE}/${item.slug}-v2.jpg`}
               alt={item.name}
               fill
               sizes="(max-width: 768px) 100vw, 60vw"
@@ -91,7 +91,7 @@ export default function NaturalColorsCatalog() {
           <div className={styles.modalPhoto} style={{ backgroundColor: active.color }}>
             <Image
               key={active.slug}
-              src={`${BASE}/${active.slug}.jpg`}
+              src={`${BASE}/${active.slug}-v2.jpg`}
               alt={active.name}
               fill
               sizes="92vw"

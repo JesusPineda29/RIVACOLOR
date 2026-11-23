@@ -150,6 +150,11 @@
     font-size: 1.5rem;
   }
 
+  /* Nutrición animal y Cuidado del hogar: el nombre queda arriba del ícono (100px, sobresale 50px). */
+  .title.titleLifted {
+    bottom: 62px;
+  }
+
   .icon {
     position: relative;
     top: auto;

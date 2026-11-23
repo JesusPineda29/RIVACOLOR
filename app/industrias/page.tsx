@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 };
 
 const BASE = '/assets/industrias';
+const LIFTED_TITLES = ['animal', 'hogar'];
 
 /* Textos de "TEXTOS PARA SECCIÓN INDUSTRIAS.docx"; fotos e íconos de la carpeta INDUSTRIAS del Drive.
    Los id coinciden con las tarjetas del inicio, que enlazan a /industrias#id. */
@@ -77,7 +78,10 @@ export default function IndustriasPage() {
               <div className={`${styles.block} ${i % 2 === 1 ? styles.reverse : ''}`}>
                 <div className={styles.big}>
                   <Image src={`${BASE}/${big}`} alt="" fill sizes="(max-width: 768px) 100vw, 48vw" className={styles.img} priority={i === 0} />
-                  <h2 className={styles.title}>{item.title}</h2>
+                  {/* En celular el ícono tapa los nombres largos: esos suben por encima del ícono. */}
+                  <h2 className={`${styles.title} ${LIFTED_TITLES.includes(item.id) ? styles.titleLifted : ''}`}>
+                    {item.title}
+                  </h2>
                 </div>
 
                 <div className={styles.icon}>
